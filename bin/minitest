@@ -1,0 +1,9 @@
+#!/usr/bin/ruby -w
+
+# yes, this is mostly tongue in cheek. If you want it to do more, improve it.
+
+if ARGV.empty? then
+  exec "rake"
+else
+  exec "rake N=\"#{ARGV.first}\" #{ARGV[1..-1].join " "}"
+end

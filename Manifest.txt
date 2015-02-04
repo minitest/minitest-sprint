@@ -1,0 +1,12 @@
+.autotest
+History.rdoc
+Manifest.txt
+README.rdoc
+Rakefile
+bin/minitest
+lib/minitest/binstub_reporter.rb
+lib/minitest/rake_reporter.rb
+lib/minitest/sprint.rb
+lib/minitest/sprint_plugin.rb
+lib/minitest/sprint_reporter.rb
+test/test_minitest_sprint.rb
