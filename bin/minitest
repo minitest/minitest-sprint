@@ -1,9 +1,15 @@
 #!/usr/bin/ruby -w
 
-# yes, this is mostly tongue in cheek. If you want it to do more, improve it.
+$:.unshift "test"
+$:.unshift "lib"
 
-if ARGV.empty? then
-  exec "rake"
-else
-  exec "rake N=\"#{ARGV.first}\" #{ARGV[1..-1].join " "}"
+require "minitest/autorun"
+
+files, args = ARGV.partition { |f| File.exist? f }
+ARGV.replace args
+
+files = Dir["test/**/{test_*,*_test}.rb"] if files.empty?
+
+files.each do |f|
+  require "./#{f}"
 end
