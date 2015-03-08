@@ -6,9 +6,9 @@ $:.unshift "lib"
 require "minitest/autorun"
 
 files, args = ARGV.partition { |f| File.exist? f }
-ARGV.replace args
-
 files = Dir["test/**/{test_*,*_test}.rb"] if files.empty?
+
+ARGV.replace args
 
 files.each do |f|
   require "./#{f}"
