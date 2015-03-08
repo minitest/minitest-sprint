@@ -10,12 +10,17 @@ failures.
 
 == FEATURES/PROBLEMS:
 
-* TEENY implementation. Probably too TEENY.
-* bin/minitest's implementation is currently tongue-in-cheek. PR's welcome.
+* TEENY implementation.
+* Includes a script for commandline autocompletion of test names.
 
 == SYNOPSIS:
 
-  % minitest 
+  $ minitest test/test_whatever.rb -n test_thingy<TAB><TAB>
+  test_thingy_error
+  test_thingy_error_teardown
+  test_thingy_failing
+  test_thingy_failing_filtered
+  ... etc ...
 
 == REQUIREMENTS:
 
