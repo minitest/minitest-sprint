@@ -2,12 +2,9 @@
 
 # Tab completion for minitest tests.
 #
-# INSTALLATION:
+# Add this to your .bashrc (or .zshrc?--someone please confirm with a PR):
 #
-# 1. Put this file in a directory in your $PATH.  Make sure it's executable
-# 2. Run this:
-#
-#   $ complete -o bashdefault -f -C $(gem which minitest/complete) ruby
+#   $ complete -o bashdefault -f -C 'ruby --disable-gems $(gem which minitest/complete)' ruby minitest
 #
 # Running individual minitest tests will now have tab completion for the
 # method names.
@@ -16,7 +13,12 @@
 #
 # When running tests, just hit tab after -n.  For example:
 #
-#   $ ruby -I lib:test test/test_whatever.rb -n test_<TAB>
+#   $ minitest test/test_whatever.rb -n test_thingy<TAB><TAB>
+#   test_thingy_error
+#   test_thingy_error_teardown
+#   test_thingy_failing
+#   test_thingy_failing_filtered
+#   ... etc ...
 #
 
 require 'optparse'
