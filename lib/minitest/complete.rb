@@ -1,25 +1,6 @@
 #!/usr/bin/env ruby
 
-# Tab completion for minitest tests.
-#
-# Add this to your .bashrc (or .zshrc?--someone please confirm with a PR):
-#
-#   $ complete -o bashdefault -f -C 'ruby --disable-gems $(gem which minitest/complete)' ruby minitest
-#
-# Running individual minitest tests will now have tab completion for the
-# method names.
-#
-# USAGE:
-#
-# When running tests, just hit tab after -n.  For example:
-#
-#   $ minitest test/test_whatever.rb -n test_thingy<TAB><TAB>
-#   test_thingy_error
-#   test_thingy_error_teardown
-#   test_thingy_failing
-#   test_thingy_failing_filtered
-#   ... etc ...
-#
+# see instructions in the readme for use
 
 require 'optparse'
 require 'shellwords'
