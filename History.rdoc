@@ -1,3 +1,10 @@
+=== 1.1.0 / 2015-03-09
+
+* 2 minor enhancements:
+
+  * Added minitest/complete for cmdline test name completion. (tenderlove)
+  * bin/minitest now directly loads tests, supports specifying files and minitest args.
+
 === 1.0.0 / 2015-01-23
 
 * 1 major enhancement
