@@ -1,3 +1,9 @@
+=== 1.1.1 / 2015-08-10
+
+* 1 bug fix:
+
+  * Remove -w from bin/minitest because SOME people run dirty code. :P
+
 === 1.1.0 / 2015-03-09
 
 * 2 minor enhancements:
