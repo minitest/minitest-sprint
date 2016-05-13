@@ -1,15 +1,11 @@
 #!/usr/bin/ruby
 
-$:.unshift "test"
-$:.unshift "lib"
+$LOAD_PATH.unshift "test"
+$LOAD_PATH.unshift "lib"
 
 require "minitest/autorun"
+require "minitest/path_expander"
 
-files, args = ARGV.partition { |f| File.exist? f }
-files = Dir["test/**/{test_*,*_test}.rb"] if files.empty?
-
-ARGV.replace args
-
-files.each do |f|
+Minitest::PathExpander.new.process.each do |f|
   require "./#{f}"
 end
