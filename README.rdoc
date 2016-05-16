@@ -31,6 +31,10 @@ method names. When running tests, just hit tab after -n. For example:
 * Includes extra plugins to print out failure re-run commands.
   * One for the minitest commandline runner. (--binstub)
   * One for rake test runners. (--rake)
+* Uses path_expander, so you can use:
+  * dir_arg -- expand a directory automatically
+  * @file_of_args -- persist arguments in a file
+  * -path_to_subtract -- ignore intersecting subsets of files/directories
 
 == SYNOPSIS:
 
