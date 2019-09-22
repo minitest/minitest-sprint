@@ -9,7 +9,6 @@ class Minitest::PathExpander < PathExpander
   TEST_GLOB = "**/{test_*,*_test,spec_*,*_spec}.rb" # :nodoc:
 
   def initialize args = ARGV # :nodoc:
-    args << "test" if args.empty?
     super args, TEST_GLOB
   end
 

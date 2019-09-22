@@ -6,6 +6,15 @@ $LOAD_PATH.unshift "lib"
 require "minitest/autorun"
 require "minitest/path_expander"
 
-Minitest::PathExpander.new.process.each do |f|
+pe = Minitest::PathExpander.new
+
+files = pe.process
+
+if files.empty? then
+  pe.args << "test"
+  files = pe.process
+end
+
+files.each do |f|
   require "./#{f}"
 end
