@@ -1,11 +1,5 @@
 #!/usr/bin/ruby
 
-$LOAD_PATH.unshift "test"
-$LOAD_PATH.unshift "lib"
+require "minitest/sprint"
 
-require "minitest/autorun"
-require "minitest/path_expander"
-
-Minitest::PathExpander.new.process.each do |f|
-  require "./#{f}"
-end
+Minitest::Sprint.run
