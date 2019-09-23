@@ -1,3 +1,13 @@
+=== 1.2.1 / 2019-09-22
+
+* 1 minor enhancement:
+
+  * Refactored and moved bin/minitest to Minitest::Sprint.run.
+
+* 1 bug fix:
+
+  * Fixed a bug where having only options would prevent default "test" directory arg.
+
 === 1.2.0 / 2016-05-16
 
 * 1 minor enhancement:
