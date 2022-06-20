@@ -1,3 +1,9 @@
+=== 1.2.2 / 2022-06-20
+
+* 1 bug fix:
+
+  * Fixed print_list for --binstub and --rake. (adam12)
+
 === 1.2.1 / 2019-09-22
 
 * 1 minor enhancement:
@@ -32,4 +38,3 @@
 * 1 major enhancement
 
   * Birthday!
-
