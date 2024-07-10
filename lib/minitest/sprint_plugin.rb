@@ -16,10 +16,10 @@ module Minitest
     case options[:sprint]
     when :rake then
       require "minitest/rake_reporter"
-      self.reporter << Minitest::RakeReporter.new
+      self.reporter << Minitest::RakeReporter.new(options)
     when :binstub then
       require "minitest/binstub_reporter"
-      self.reporter << Minitest::BinstubReporter.new
+      self.reporter << Minitest::BinstubReporter.new(options)
     end
   end
 end

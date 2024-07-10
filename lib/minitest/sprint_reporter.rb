@@ -1,8 +1,10 @@
 module Minitest
   class SprintReporter < AbstractReporter
     attr_accessor :results
+    attr_accessor :options
 
-    def initialize
+    def initialize(options)
+      self.options = options
       self.results = []
     end
 
