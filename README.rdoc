@@ -45,6 +45,11 @@ method names. When running tests, just hit tab after -n. For example:
   test_thingy_failing_filtered
   ... etc ...
 
+  # Rakefile
+  Minitest::TestTask.create do |t|
+    t.extra_args = ["--rake"] # Or --binstub
+  end
+
 == REQUIREMENTS:
 
 * ruby
