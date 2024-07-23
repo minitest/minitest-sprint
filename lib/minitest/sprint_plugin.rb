@@ -2,8 +2,9 @@ require "minitest"
 
 module Minitest
   def self.plugin_sprint_options opts, options # :nodoc:
-    opts.on "--rake", "Report how to re-run failures with rake." do
+    opts.on "--rake [TASK]", "Report how to re-run failures with rake." do |task|
       options[:sprint] = :rake
+      options[:rake_task] = task
     end
 
     opts.on "--binstub", "Report how to re-run failures with minitest." do
@@ -15,7 +16,7 @@ module Minitest
     case options[:sprint]
     when :rake then
       require "minitest/rake_reporter"
-      self.reporter << Minitest::RakeReporter.new
+      self.reporter << Minitest::RakeReporter.new(options[:rake_task])
     when :binstub then
       require "minitest/binstub_reporter"
       self.reporter << Minitest::BinstubReporter.new
