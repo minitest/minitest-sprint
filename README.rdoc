@@ -51,7 +51,7 @@ method names. When running tests, just hit tab after -n. For example:
 
 == INSTALL:
 
-* sudo gem install minitest-sprint
+* gem install minitest-sprint
 
 == LICENSE:
 
