@@ -1,3 +1,13 @@
+=== 1.3.0 / 2024-07-23
+
+* 1 minor enhancement:
+
+  * Allow rake task name to be passed as an argument and repeated back in failure list. (adam12)
+
+* 1 bug fix:
+
+  * Fixed wonky shebang in bin/minitest.
+
 === 1.2.2 / 2022-06-20
 
 * 1 bug fix:
