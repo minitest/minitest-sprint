@@ -8,6 +8,32 @@ rdoc :: http://docs.seattlerb.org/minitest-sprint
 Runs (Get it? It's fast!) your tests and makes it easier to rerun individual
 failures.
 
+== FEATURES/PROBLEMS:
+
+* TEENY implementation.
+* Uses path_expander, so you can use:
+  * dir_arg -- expand a directory automatically
+  * @file_of_args -- persist arguments in a file
+  * -path_to_subtract -- ignore intersecting subsets of files/directories
+* Includes a script for commandline autocompletion of test names.
+* Includes extra plugins to print out failure re-run commands.
+  * One for the minitest commandline runner. (--binstub)
+  * One for rake test runners. (--rake)
+
+== SYNOPSIS:
+
+  $ minitest test/test_whatever.rb -n test_thingy<TAB><TAB>
+  test_thingy_error
+  test_thingy_error_teardown
+  test_thingy_failing
+  test_thingy_failing_filtered
+  ... etc ...
+
+  # Rakefile
+  Minitest::TestTask.create do |t|
+    t.extra_args = ["--rake"] # Or --binstub
+  end
+
 === Tab Completion
 
 Add this to your .bashrc (or .zshrc?--someone please confirm with a PR):
@@ -23,32 +49,6 @@ method names. When running tests, just hit tab after -n. For example:
   test_thingy_failing
   test_thingy_failing_filtered
   ... etc ...
-
-== FEATURES/PROBLEMS:
-
-* TEENY implementation.
-* Includes a script for commandline autocompletion of test names.
-* Includes extra plugins to print out failure re-run commands.
-  * One for the minitest commandline runner. (--binstub)
-  * One for rake test runners. (--rake)
-* Uses path_expander, so you can use:
-  * dir_arg -- expand a directory automatically
-  * @file_of_args -- persist arguments in a file
-  * -path_to_subtract -- ignore intersecting subsets of files/directories
-
-== SYNOPSIS:
-
-  $ minitest test/test_whatever.rb -n test_thingy<TAB><TAB>
-  test_thingy_error
-  test_thingy_error_teardown
-  test_thingy_failing
-  test_thingy_failing_filtered
-  ... etc ...
-
-  # Rakefile
-  Minitest::TestTask.create do |t|
-    t.extra_args = ["--rake"] # Or --binstub
-  end
 
 == REQUIREMENTS:
 
