@@ -8,8 +8,7 @@ class Minitest::Sprint
   VERSION = "1.3.0"
 
   def self.run args = ARGV
-    Minitest::PathExpander.new(args).process.each do |f|
-      require "./#{f}"
-    end
+    Minitest::PathExpander.new(args)
+      .process { |f| require "./#{f}" }
   end
 end

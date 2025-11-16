@@ -10,7 +10,10 @@ failures.
 
 == FEATURES/PROBLEMS:
 
-* TEENY implementation.
+* Run tests by line number <path>:<line-specifiers>:
+  * test.rb:42
+  * test.rb:50-100
+  * test1.rb:42,50-100,150 test2.rb:13
 * Uses path_expander, so you can use:
   * dir_arg -- expand a directory automatically
   * @file_of_args -- persist arguments in a file

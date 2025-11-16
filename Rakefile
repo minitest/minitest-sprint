@@ -12,6 +12,7 @@ Hoe.spec "minitest-sprint" do
   license "MIT"
 
   dependency "path_expander", "~> 1.1"
+  dependency "prism",         "~> 1.5"
 end
 
 # vim: syntax=ruby
