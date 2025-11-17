@@ -11,6 +11,8 @@ Hoe.spec "minitest-sprint" do
   developer "Ryan Davis", "ryand-ruby@zenspider.com"
   license "MIT"
 
+  require_ruby_version ">= 3.1"
+
   dependency "path_expander", "~> 1.1"
   dependency "prism",         "~> 1.5"
 end
