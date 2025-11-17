@@ -5,10 +5,10 @@ $LOAD_PATH.unshift "test"
 $LOAD_PATH.unshift "lib"
 
 class Minitest::Sprint
-  VERSION = "1.3.0"
+  VERSION = "1.4.0"
 
   def self.run args = ARGV
     Minitest::PathExpander.new(args)
-      .process { |f| require "./#{f}" }
+      .process { |f| require "./#{f}" if File.file? f }
   end
 end
