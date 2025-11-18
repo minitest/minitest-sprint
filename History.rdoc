@@ -1,3 +1,15 @@
+=== 1.4.0 / 2025-11-17
+
+* 1 minor enhancement:
+
+  * Added multiple line number support: eg test.rb:42,50-100 (multiple files too)
+
+* 3 bug fixes:
+
+  * Fixed exception raised when requiring default test that wasn't actually there
+  * Fixed shebang on bin/minitest for linux
+  * Set minimum ruby version to 3.1.
+
 === 1.3.0 / 2024-07-23
 
 * 1 minor enhancement:
