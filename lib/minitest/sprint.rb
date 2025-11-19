@@ -5,7 +5,7 @@ $LOAD_PATH.unshift "test"
 $LOAD_PATH.unshift "lib"
 
 class Minitest::Sprint
-  VERSION = "1.4.0"
+  VERSION = "1.4.1"
 
   def self.run args = ARGV
     Minitest::PathExpander.new(args)

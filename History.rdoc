@@ -1,3 +1,9 @@
+=== 1.4.1 / 2025-11-18
+
+* 1 bug fix:
+
+  * OOPS! I'm using Data so I need to use ruby 3.2+
+
 === 1.4.0 / 2025-11-17
 
 * 1 minor enhancement:
