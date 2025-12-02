@@ -1,5 +1,12 @@
 require "minitest"
 
+class OptionParser # unofficial embedded gem "makeoptparseworkwell"
+  def hidden(...)         = define(...).tap { |sw| def sw.summarize(*) = nil }
+  def deprecate(from, to) = hidden(from) { abort "#{from} is deprecated. Use #{to}." }
+  def topdict(name)       = name.length > 1 ? top.long : top.short
+  def alias(from, to)     = (dict = topdict(from) and dict[to] = dict[from])
+end unless OptionParser.method_defined? :hidden
+
 module Minitest
   def self.plugin_sprint_options opts, options # :nodoc:
     opts.on "--rake [TASK]", "Report how to re-run failures with rake." do |task|
@@ -7,8 +14,12 @@ module Minitest
       options[:rake_task] = task
     end
 
-    opts.on "--binstub", "Report how to re-run failures with minitest." do
-      options[:sprint] = :binstub
+    opts.deprecate "--binstub", "--rerun"
+
+    sprint_styles = %w[rake lines names binstub]
+
+    opts.on "-r", "--rerun [STYLE]", sprint_styles, "Report how to re-run failures using STYLE (names, lines)." do |style|
+      options[:sprint] = (style || :lines).to_sym
     end
   end
 
@@ -17,9 +28,12 @@ module Minitest
     when :rake then
       require "minitest/rake_reporter"
       self.reporter << Minitest::RakeReporter.new(options[:rake_task])
-    when :binstub then
-      require "minitest/binstub_reporter"
-      self.reporter << Minitest::BinstubReporter.new
+    when :binstub, :names then
+      require "minitest/sprint_reporter"
+      self.reporter << Minitest::SprintReporter.new
+    when :lines then
+      require "minitest/sprint_reporter"
+      self.reporter << Minitest::SprintReporter.new(:lines)
     end
   end
 end
