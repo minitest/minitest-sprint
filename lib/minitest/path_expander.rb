@@ -57,7 +57,7 @@ class Minitest::PathExpander < PathExpander
     flags.reject { |flag| # all hits are truthy, so this works out well
       case flag
       when /^-I(.*)/ then
-        $LOAD_PATH.concat $1.split(/:/)
+        $LOAD_PATH.prepend(*$1.split(/:/))
       when /^-d/ then
         $DEBUG = true
       when /^-w/ then
