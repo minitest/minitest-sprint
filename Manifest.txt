@@ -4,7 +4,6 @@ Manifest.txt
 README.rdoc
 Rakefile
 bin/minitest
-lib/minitest/binstub_reporter.rb
 lib/minitest/complete.rb
 lib/minitest/path_expander.rb
 lib/minitest/rake_reporter.rb
