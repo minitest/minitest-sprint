@@ -5,7 +5,7 @@ module Minitest
     attr_accessor :name
 
     def initialize name = nil
-      self.results = []
+      super()
       self.name    = name
     end
 
