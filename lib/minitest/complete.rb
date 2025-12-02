@@ -5,7 +5,10 @@
 require 'optparse'
 require 'shellwords'
 
-argv = Shellwords.split(ENV['COMP_LINE']).drop 1
+argv = Shellwords.split(ENV['COMP_LINE'] || "")
+argv = ARGV if argv.empty?
+argv.drop 1
+
 options = {}
 
 begin
@@ -18,18 +21,29 @@ rescue
   retry # ignore options passed to Ruby
 end
 
+# TODO: account for running as bin/minitest being a file
 file = argv.find { |f| File.file?(f) && !File.directory?(f) }
 
 exit unless options.key?(:method) && file
 
-require 'ripper'
+require 'prism'
 
-methods = []
-K = Class.new(Ripper) { define_method(:on_def) { |n,_,_| methods << n } } # :nodoc:
+class MethodFinder < Prism::Visitor
+  attr_accessor :methods
+
+  def initialize methods
+    self.methods = methods
+  end
+
+  def visit_def_node node
+    super
+    methods << node.name
+  end
+end
 
 begin
-  K.parse File.read(file), file, 1
-  methods = methods.grep(/^#{options[:method]}/) if options[:method]
-  puts methods.join("\n")
-rescue # give up on parse errors
+  methods = []
+  Prism.parse_file(file).value.accept MethodFinder.new methods
+  methods = methods.grep(/#{options[:method]}/)
+  puts methods.join "\n"
 end

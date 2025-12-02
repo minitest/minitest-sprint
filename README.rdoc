@@ -41,7 +41,7 @@ failures.
 
 Add this to your .bashrc (or .zshrc?--someone please confirm with a PR):
 
-  $ complete -o bashdefault -f -C 'ruby --disable-gems $(gem which minitest/complete)' minitest
+  $ complete -o bashdefault -f -C 'ruby $(gem which minitest/complete)' minitest
 
 Running individual minitest tests will now have tab completion for the
 method names. When running tests, just hit tab after -n. For example:
