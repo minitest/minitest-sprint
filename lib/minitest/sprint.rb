@@ -1,8 +1,8 @@
+$LOAD_PATH.unshift "test", "lib"
+
+require "simplecov" if ENV["MT_COV"] || ARGV.delete("--simplecov")
 require "minitest/autorun"
 require "minitest/path_expander"
-
-$LOAD_PATH.unshift "test"
-$LOAD_PATH.unshift "lib"
 
 class Minitest::Sprint
   VERSION = "1.4.1"
