@@ -41,9 +41,7 @@ class MethodFinder < Prism::Visitor
   end
 end
 
-begin
-  methods = []
-  Prism.parse_file(file).value.accept MethodFinder.new methods
-  methods = methods.grep(/#{options[:method]}/)
-  puts methods.join "\n"
-end
+methods = []
+Prism.parse_file(file).value.accept MethodFinder.new methods
+methods = methods.grep(/#{options[:method]}/)
+puts methods.join "\n"
