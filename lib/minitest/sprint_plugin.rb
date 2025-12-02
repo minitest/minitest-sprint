@@ -1,13 +1,15 @@
 require "minitest"
 
+# :stopdoc:
 class OptionParser # unofficial embedded gem "makeoptparseworkwell"
   def hidden(...)         = define(...).tap { |sw| def sw.summarize(*) = nil }
   def deprecate(from, to) = hidden(from) { abort "#{from} is deprecated. Use #{to}." }
   def topdict(name)       = name.length > 1 ? top.long : top.short
   def alias(from, to)     = (dict = topdict(from) and dict[to] = dict[from])
 end unless OptionParser.method_defined? :hidden
+# :startdoc:
 
-module Minitest
+module Minitest # :nodoc:
   def self.plugin_sprint_options opts, options # :nodoc:
     opts.on "--rake [TASK]", "Report how to re-run failures with rake." do |task|
       options[:sprint] = :rake

@@ -1,18 +1,24 @@
 module Minitest
-  class SprintReporter < AbstractReporter
-    attr_accessor :style
-    attr_accessor :results
+  ##
+  # An extra minitest reporter to output how to rerun failures in
+  # various styles.
 
-    def initialize style = :regexp
+  class SprintReporter < AbstractReporter
+    ##
+    # The style to report, either lines or regexp. Defaults to lines.
+    attr_accessor :style
+    attr_accessor :results # :nodoc:
+
+    def initialize style = :regexp # :nodoc:
       self.results = []
       self.style = style
     end
 
-    def record result
+    def record result # :nodoc:
       results << result unless result.passed? or result.skipped?
     end
 
-    def report
+    def report # :nodoc:
       return if results.empty?
 
       puts
@@ -22,7 +28,7 @@ module Minitest
       puts
     end
 
-    def print_list
+    def print_list # :nodoc:
       case style
       when :regexp
         results.each do |result|

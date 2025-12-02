@@ -7,7 +7,7 @@ module Minitest; end # :nodoc:
 # Minitest's PathExpander to find and filter tests.
 
 class Minitest::PathExpander < PathExpander
-  attr_accessor :by_line
+  attr_accessor :by_line # :nodoc:
 
   TEST_GLOB = "**/{test_*,*_test,spec_*,*_spec}.rb" # :nodoc:
 
@@ -81,6 +81,10 @@ class Minitest::PathExpander < PathExpander
     test_res = tests_to_regexp tests
     self.args << "-n" << "/#{test_res.join "|"}/"
   end
+
+  ##
+  # Find and return all known tests as a hash of klass => [TM...]
+  # pairs.
 
   def all_tests
     Minitest.seed = 42 # minor hack to deal with runnable_methods shuffling
@@ -157,6 +161,9 @@ class Minitest::PathExpander < PathExpander
       true
     end
   end
+
+  ##
+  # Simple TestMethod (abbr TM) Data object.
 
   TM = Data.define :klass, :name, :path, :lines do
     def initialize klass:, name:

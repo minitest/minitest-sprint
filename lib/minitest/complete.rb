@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env -S ruby
 
 # see instructions in the readme for use
 
@@ -25,7 +25,7 @@ exit unless options.key?(:method) && file
 require 'ripper'
 
 methods = []
-K = Class.new(Ripper) { define_method(:on_def) { |n,_,_| methods << n } }
+K = Class.new(Ripper) { define_method(:on_def) { |n,_,_| methods << n } } # :nodoc:
 
 begin
   K.parse File.read(file), file, 1
