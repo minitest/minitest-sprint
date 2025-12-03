@@ -1,47 +1,56 @@
 #!/usr/bin/env -S ruby
 
-# see instructions in the readme for use
+# :stopdoc:
 
-require 'optparse'
-require 'shellwords'
+require "optparse"
+require "shellwords"
 
-argv = Shellwords.split(ENV['COMP_LINE'] || "")
-argv = ARGV if argv.empty?
-argv.drop 1
+# complete -o bashdefault -f -C 'ruby lib/minitest/complete.rb' minitest
+# using eg:
+#    COMP_LINE="blah test/test_file.rb -n test_pattern"
+# or test directly with:
+#    ./lib/minitest/complete.rb test/test_file.rb -n test_pattern
 
-options = {}
+argv = Shellwords.split ENV["COMP_LINE"] || ARGV.join(" ")
+comp_re = nil
 
 begin
   OptionParser.new do |opts|
-    opts.on("-n", "--name [METHOD]", "Test method") do |m|
-      options[:method] = m
+    # part of my unofficial embedded gem "makeoptparseworkwell"
+    def opts.topdict(name)   = (name.length > 1 ? top.long : top.short)
+    def opts.alias(from, to) = (dict = topdict(from) ; dict[to] = dict[from])
+
+    opts.on "-n", "--name [METHOD]", "minitest option" do |m|
+      comp_re = Regexp.new m
     end
-  end.parse!(argv)
+
+    opts.alias "name", "include"
+    opts.alias "name", "exclude"
+    opts.alias "n",    "i"
+    opts.alias "n",    "e"
+    opts.alias "n",    "x"
+  end.parse! argv
 rescue
   retry # ignore options passed to Ruby
 end
 
-# TODO: account for running as bin/minitest being a file
-file = argv.find { |f| File.file?(f) && !File.directory?(f) }
+path = argv.find_all { |f| File.file? f }.last
 
-exit unless options.key?(:method) && file
+exit unless comp_re && path
 
-require 'prism'
+require "prism"
 
-class MethodFinder < Prism::Visitor
-  attr_accessor :methods
+names, queue = [], [Prism.parse_file(path).value]
 
-  def initialize methods
-    self.methods = methods
-  end
-
-  def visit_def_node node
-    super
-    methods << node.name
+while node = queue.shift do
+  if node.type == :def_node then
+    name = node.name
+    names << name if name =~ comp_re
+  else
+    queue.concat node.compact_child_nodes # no need to process def body
   end
 end
 
-methods = []
-Prism.parse_file(file).value.accept MethodFinder.new methods
-methods = methods.grep(/#{options[:method]}/)
-puts methods.join "\n"
+puts names.sort
+
+# :startdoc:
