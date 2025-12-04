@@ -105,7 +105,10 @@ class Minitest::PathExpander < PathExpander
   def tests_by_class
     all_tests
       .transform_values { |ms|
-        ms.select { |m| bl=by_line[m.path]; not bl or bl.any? { |l| m.include? l } }
+        ms.select { |m|
+          bl = by_line[m.path]
+          not bl or bl.any? { |l| m.include? l }
+        }
       }
       .reject { |k, v| v.empty? }
   end
@@ -120,7 +123,7 @@ class Minitest::PathExpander < PathExpander
       .map { |k, ns|                              # [ "k1#(?:a|b)", "k2#c", ...]
         if ns.size > 1 then
           ns.map! { |n| Regexp.escape n }
-          "%s#\(%s\)" % [Regexp.escape(k.name), ns.join("|")]
+          "%s#\(?:%s\)" % [Regexp.escape(k.name), ns.join("|")]
         else
           "%s#%s" % [Regexp.escape(k.name), ns.first]
         end

@@ -15,7 +15,8 @@ class Minitest::Sprint
   # Process and run minitest cmdline.
 
   def self.run args = ARGV
-    Minitest::PathExpander.new(args)
-      .process { |f| require "./#{f}" if File.file? f }
+    Minitest::PathExpander.new(args).process { |f|
+      require_relative f if File.file? f
+    }
   end
 end
