@@ -16,7 +16,7 @@ class Minitest::Sprint
 
   def self.run args = ARGV
     Minitest::PathExpander.new(args).process { |f|
-      require_relative f if File.file? f
+      require "./#{f}" if File.file? f
     }
   end
 end
