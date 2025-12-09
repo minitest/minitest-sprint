@@ -26,16 +26,14 @@ module Minitest # :nodoc:
   end
 
   def self.plugin_sprint_init options
+    require_relative "sprint"
     case options[:sprint]
     when :rake then
-      require "minitest/rake_reporter"
-      self.reporter << Minitest::RakeReporter.new(options[:rake_task])
+      self.reporter << Minitest::Sprint::RakeReporter.new(options[:rake_task])
     when :binstub, :names then
-      require "minitest/sprint_reporter"
-      self.reporter << Minitest::SprintReporter.new
+      self.reporter << Minitest::Sprint::SprintReporter.new
     when :lines then
-      require "minitest/sprint_reporter"
-      self.reporter << Minitest::SprintReporter.new(:lines)
+      self.reporter << Minitest::Sprint::SprintReporter.new(:lines)
     end
   end
 end

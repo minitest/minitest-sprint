@@ -6,8 +6,6 @@ Rakefile
 bin/minitest
 lib/minitest/complete.rb
 lib/minitest/path_expander.rb
-lib/minitest/rake_reporter.rb
 lib/minitest/sprint.rb
 lib/minitest/sprint_plugin.rb
-lib/minitest/sprint_reporter.rb
 test/test_minitest_sprint.rb

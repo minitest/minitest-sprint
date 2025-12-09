@@ -13,7 +13,6 @@ Hoe.spec "minitest-sprint" do
 
   require_ruby_version ">= 3.2"
 
-  dependency "path_expander", "~> 1.1"
   dependency "prism",         "~> 1.5"
 end
 
