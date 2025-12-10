@@ -195,7 +195,7 @@ class Minitest::VendoredPathExpander
 
     files
   end
-end
+end # VendoredPathExpander
 
 ##
 # Minitest's PathExpander to find and filter tests.
