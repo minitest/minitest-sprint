@@ -10,7 +10,7 @@ require_relative "path_expander"
 
 module Minitest
   class Sprint
-    VERSION = "1.4.1" # :nodoc:
+    VERSION = "1.5.0" # :nodoc:
 
     ##
     # Process and run minitest cmdline.

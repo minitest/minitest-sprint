@@ -1,3 +1,25 @@
+=== 1.5.0 / 2025-12-11
+
+* 10 minor enhancements:
+
+  * --rerun now takes a style (lines, names) and defaults to lines.
+  * Add --simplecov (and MT_COV=1) option to load before minitest.
+  * Added all the filtering options to minitest/complete.
+  * Folded BinstubReporter into SprintReporter and added line number reporting.
+  * Folded rake_reporter.rb and sprint_reporter.rb into sprint.rb
+  * Normalized namespacing inside of Minitest::Sprint
+  * Renamed --binstub to --rerun and added -r shortcut.
+  * Switched minitest/complete to prism. Should be much more solid.
+  * Vendored latest version of path_expander.
+  * Updated Minitest::VendoredPathExpander to 2.0.0 and cleaned up overrides.
+
+* 4 bug fixes:
+
+  * -I flag now prepends onto load path.
+  * Fixed minitest cmdline to use require_relative to test against current version.
+  * Made RakeReporter play better with superclass.
+  * Prepend test and lib onto load path before loading minitest.
+
 === 1.4.1 / 2025-11-18
 
 * 1 bug fix:
