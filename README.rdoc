@@ -39,9 +39,20 @@ failures.
 
 === Tab Completion
 
-Add this to your .bashrc (or .zshrc?--someone please confirm with a PR):
+Add this to your .bashrc:
 
   $ complete -o bashdefault -f -C 'ruby $(gem which minitest/complete)' minitest
+
+Or this to your .zshrc:
+
+  _minitest_completion() {
+    if [[ ${words[(I)-n]} -gt 0 ]]; then
+      compadd - ${(f)"$(ruby $(gem which minitest/complete) "${words[@]}")"}
+    else
+      _files
+    fi
+  }
+  compdef _minitest_completion minitest
 
 Running individual minitest tests will now have tab completion for the
 method names. When running tests, just hit tab after -n. For example:
